@@ -1,13 +1,15 @@
 const metric = [
-	[0,1,0],
-	[0,1,0],
-	[0,1,0]
+  [0,0,0,0],
+  [0,1,0,0],
+  [0,1,1,1],
+  [0,0,0,0]
 ]
 
 const result = [
-	[0,0,0],
-	[0,0,0],
-	[0,0,0]
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
 ]
 //nested for loop, checks each cell after another
 for (let rowNumber=0; rowNumber<metric.length; rowNumber++) {
@@ -26,19 +28,19 @@ for (let rowNumber=0; rowNumber<metric.length; rowNumber++) {
     if (hasNeighborAbove) {
       // count neighbors in row above -> add to neighborCount
       neighborCount += metric[rowNumber-1][columNumber]
-		}
+    }
     if (hasNeighborBelow) {
       // count neighbors in row below
       neighborCount += metric[rowNumber+1][columNumber]
-		}
+    }
     if (hasNeighborToLeft) {
       // count neighbors in column on left side
       neighborCount += metric[rowNumber][columNumber-1]
-		}
+    }
     if (hasNeighborToRight) {
       // count neighbors in column on right side
       neighborCount += metric[rowNumber][columNumber+1]
-		}
+    }
     if (hasNeighborAbove && hasNeighborToLeft) {
       // count left upper diagonal
       neighborCount += metric[rowNumber-1][columNumber-1]

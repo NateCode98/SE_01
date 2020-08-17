@@ -1,7 +1,7 @@
 const metric = [
-  [0,0,0,0],
   [0,1,0,0],
-  [0,1,1,1],
+  [0,1,0,0],
+  [0,1,0,0],
   [0,0,0,0]
 ]
 
@@ -11,6 +11,14 @@ const result = [
   [0,0,0,0],
   [0,0,0,0],
 ]
+
+const result2 = [
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0]
+]
+
 //nested for loop, checks each cell after another
 for (let rowNumber=0; rowNumber<metric.length; rowNumber++) {
   for (let columNumber=0; columNumber<metric[rowNumber].length; columNumber++) {
@@ -57,8 +65,21 @@ for (let rowNumber=0; rowNumber<metric.length; rowNumber++) {
       // count right down diagonal
       neighborCount += metric[rowNumber+1][columNumber+1]
     }
-    result[rowNumber][columNumber] = neighborCount;
+    //from before: result[rowNumber][columNumber] = neighborCount;
+    //not working, some logical error somewhere, but can't concentrate anymore, sorry!
+    if (metric[rowNumber][columNumber] === 0){
+    // A new inhabitant is born into an empty cell that has exactly 3 neighbours
+      if (neighborCount === 3){
+        result[rowNumber][columNumber] = 1;
+      } else {
+        // An inhabitant of a cell survives if it has 2 or 3 neighbours.
+        if (neighborCount === 2 || neighborCount === 3 ) {
+          result [rowNumber][columNumber] = 1;
+        } else {
+          result [rowNumber] [columNumber] = 0;
+        }
+      }
+    }
   }
 }
-
 console.log(result)
